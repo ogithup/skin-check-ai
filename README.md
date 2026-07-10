@@ -5,7 +5,6 @@ SkinCheck AI is a mobile-first beauty and skincare tracking platform designed as
 ## Project Status
 
 Current implementation covers:
-
 - Sprint 0 product discovery and system architecture
 - Sprint 1 design system and authentication scaffold
 
