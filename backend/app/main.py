@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.api.routers import auth, users
+from app.api.routers import auth, dashboard, users
 from app.core.config import get_settings
 from app.core.database import Base, engine
 from app import models  # noqa: F401
@@ -14,6 +14,7 @@ def create_app() -> FastAPI:
 
     app.include_router(auth.router, prefix="/auth", tags=["auth"])
     app.include_router(users.router, prefix="/users", tags=["users"])
+    app.include_router(dashboard.router, prefix="/dashboard", tags=["dashboard"])
 
     @app.get("/health")
     def health() -> dict[str, str]:

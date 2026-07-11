@@ -17,3 +17,4 @@ backend/test.db
 .env
 backend/.env
 skin-check-ai.docx
+~$*.docx

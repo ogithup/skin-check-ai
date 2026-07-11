@@ -1,2 +1,2 @@
-from .main import create_app
+"""SkinCheck AI backend package."""
 

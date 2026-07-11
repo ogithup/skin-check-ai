@@ -35,3 +35,26 @@ def test_update_profile(client):
     body = update.json()
     assert body["profile"]["display_name"] == "Oğuz"
     assert body["profile"]["skin_type"] == "Combination"
+
+
+def test_dashboard_summary(client):
+    register = client.post(
+        "/auth/register",
+        json={"email": "dashboard@example.com", "password": "password123"},
+    )
+    token = register.json()["access_token"]
+
+    response = client.get(
+        "/dashboard/summary",
+        headers={"Authorization": f"Bearer {token}"},
+    )
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["expiring_products"] == []
+    assert body["rarely_used_products"] == []
+    assert body["favorite_products"] == []
+    assert body["today_routine"]["title"]
+    assert body["latest_look"]["title"]
+    assert len(body["progress_reminders"]) == 1
+    assert len(body["forum_highlights"]) == 1

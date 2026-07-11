@@ -7,6 +7,7 @@ SkinCheck AI is a mobile-first beauty and skincare tracking platform designed as
 Current implementation covers:
 - Sprint 0 product discovery and system architecture
 - Sprint 1 design system and authentication scaffold
+- Sprint 2 beauty dashboard foundation
 
 ## Core Vision
 
@@ -29,6 +30,7 @@ The system is intentionally designed to avoid medical diagnosis claims.
 - `Material 3`
 - premium beauty design system
 - authentication flow scaffold
+- beauty dashboard screen and section widgets
 - reusable UI components
 
 ### Backend
@@ -38,6 +40,7 @@ The system is intentionally designed to avoid medical diagnosis claims.
 - `PostgreSQL 17`
 - JWT authentication
 - password hashing
+- dashboard summary endpoint
 
 ### Testing
 
@@ -90,6 +93,40 @@ docs/
 - `PUT /users/profile`
 - `users` and `user_profiles` models
 
+## Sprint 2 Deliverables
+
+### Frontend
+
+- `DashboardScreen`
+- `DashboardHeader`
+- `ExpiringProductsCard`
+- `RarelyUsedProductsCard`
+- `FavoriteCarousel`
+- `RoutineProgressCard`
+- `LatestLookCard`
+- `ProgressReminderCard`
+- `ForumHighlightsCard`
+- loading, empty, and error states for dashboard
+- dashboard integrated into the main navigation shell
+
+### Backend
+
+- `GET /dashboard/summary`
+- future-ready dashboard response schema
+- authenticated dashboard summary service
+- dashboard API test coverage
+
+### Product/UX
+
+- today dashboard wireframe description
+- expiring products section description
+- rarely used products section description
+- favorites carousel description
+- skincare progress description
+- latest look description
+- progress reminder description
+- forum highlights description
+
 ## Local Setup
 
 ### Backend
@@ -130,14 +167,21 @@ pytest
 
 ```powershell
 cd frontend
+flutter create .
 flutter pub get
-flutter run
+flutter run -d chrome
 ```
 
 Run widget tests:
 
 ```powershell
 flutter test
+```
+
+If Windows desktop support is preferred:
+
+```powershell
+flutter run -d windows
 ```
 
 ## API Summary
@@ -152,14 +196,18 @@ flutter test
 - `GET /users/me`
 - `PUT /users/profile`
 
+### Dashboard
+
+- `GET /dashboard/summary`
+
 ## Documentation
 
 - [Sprint 0 Product Discovery](docs/sprint-0-product-discovery.md)
 - [Sprint 1 Runbook](docs/sprint-1-runbook.md)
+- [Sprint 2 Beauty Dashboard](docs/sprint-2-beauty-dashboard.md)
 
 ## Roadmap
 
-- Sprint 2 dashboard
 - Sprint 3 makeup product diary
 - Sprint 4 product expiration tracking
 - Sprint 5 notifications
@@ -173,6 +221,7 @@ flutter test
 
 ## Notes
 
-- Current frontend is a scaffold, not a fully connected production app.
+- Current frontend contains the Sprint 1 auth shell and Sprint 2 dashboard UI with mock dashboard data on the client side.
 - Current backend creates tables from SQLAlchemy metadata on startup.
+- Dashboard backend currently returns safe placeholder and future-ready summary data until later product, routine, and look tables are fully implemented.
 - Alembic migrations can be added in the next step.
